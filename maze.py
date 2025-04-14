@@ -1,13 +1,11 @@
 import random
 import sys
 sys.setrecursionlimit(10000)
-import random
-import sys
-sys.setrecursionlimit(10000)
 
 ROWS, COLS = 15, 15
 
 DIRS = [(-2, 0), (2, 0), (0, -2), (0, 2)]
+
 def create_empty_maze(rows, cols):
     maze = [['#' for _ in range(cols)] for _ in range(rows)]
     return maze
@@ -20,10 +18,12 @@ def generate_maze(maze, x, y):
         if 1 <= nx < ROWS - 1 and 1 <= ny < COLS - 1 and maze[nx][ny] == '#':
             maze[x + dx // 2][y + dy // 2] = ' '
             generate_maze(maze, nx, ny)
-            def print_maze(maze):
+
+def print_maze(maze):
     for row in maze:
         print(''.join(row))
-        def find_path(maze, x, y, visited):
+
+def find_path(maze, x, y, visited):
     if x < 0 or y < 0 or x >= ROWS or y >= COLS:
         return False
     if maze[x][y] == '#' or visited[x][y]:
@@ -42,13 +42,18 @@ def generate_maze(maze, x, y):
         return True
 
     return False
-    def main():
+
+def main():
     maze = create_empty_maze(ROWS, COLS)
     generate_maze(maze, 1, 1)
-    maze[1][1] = 'S'
-    maze[ROWS - 2][COLS - 2] = 'E
-    maze[1][1] = 'S'
-    maze[ROWS - 2][COLS - 2] = 'E'
+    maze[1][1] = 'S'  
+    maze[ROWS - 2][COLS - 2] = 'E'  
     print_maze(maze)
-    if __name__ == "__main__":
+    
+    visited = [[False for _ in range(COLS)] for _ in range(ROWS)]
+    find_path(maze, 1, 1, visited)
+    print("\n")
+    print_maze(maze)
+
+if __name__ == "__main__":
     main()
