@@ -50,5 +50,5 @@ def generate_maze(maze, x, y):
     maze[1][1] = 'S'
     maze[ROWS - 2][COLS - 2] = 'E'
     print_maze(maze)
-    if name == "__main__":
+    if __name__ == "__main__":
     main()
